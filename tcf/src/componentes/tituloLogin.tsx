@@ -3,7 +3,9 @@ export default function tituloLogin() {
     const urlImageLogin = './'
 
     return (
-        <img src={urlImage}>
-        <h1>Login</h1>
+        <>
+            <img src={urlImageLogin}/>
+            <h1>Login</h1>
+        </>
     )
 }
