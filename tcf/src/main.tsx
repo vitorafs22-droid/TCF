@@ -1,14 +1,14 @@
 import './style.css'
-import heroImg from './assets/hero.png'
-import typescriptLogo from './assets/typescript.svg'
-import viteLogo from './assets/vite.svg'
-import { setupCounter } from './counter.ts'
-import tiutloLogin from './componentes/tituloLogin.tsx'
-import containerLogin from './componentes/containerLogin.tsx'
+import TituloLogin from './componentes/TituloLogin.tsx'
+import ContainerLogin from './componentes/ContainerLogin.tsx'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<>
-<tituloLogin/>
-<containerLogin/>
-</>
-` 
+ReactDOM.createRoot(document.getElementById('app')!).render(
+  <React.StrictMode>
+    <div>
+      <TituloLogin />
+      <ContainerLogin />
+    </div>
+  </React.StrictMode>
+)
