@@ -1,5 +1,5 @@
 export default Home{
     return(
-        <h1>HOME</h1>
+        <h1></h1>
     )
 }
