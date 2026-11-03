@@ -1,6 +1,6 @@
 export default function TituloLogin() {
 
-    const urlImageLogin = './assets/tcf/src/assets/mercadoDeAcoes.avif'
+    const urlImageLogin = ''
 
     return (
         <div>

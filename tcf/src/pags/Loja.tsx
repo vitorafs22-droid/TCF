@@ -196,13 +196,8 @@ export default function Loja({sessao, onLogout} ) {
             >
               SUPPORT IA
             </button>
-            <button 
-              className={`global-nav-btn ${activeTab === 'login' ? 'active' : ''}`}
-              onClick={() => setActiveTab('login')}
-            >
-              {user ? user.name : 'LOGIN'}
-            </button>
-            <button onClick={handleLogout}>Sair</button>
+            
+            <button onClick={handleLogout}>🏃🚪</button>
           </nav>
         </div>
       </header>
