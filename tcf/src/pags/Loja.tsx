@@ -29,7 +29,11 @@ const LISTA_JOGOS: Game[] = [
     id: 1,
     title: "Red Dead Redemption 2",
     price: 299.90,
+<<<<<<< HEAD
     image: "https://th.bing.com/th/id/R.32faa1e71871f9d5905830ec57b75533?rik=cp%2bBLLPZdFsN3A&pid=ImgRaw&r=0",
+=======
+    image: "https://www.playstation.com/pt-br/games/red-dead-redemption-2/?srsltid=AYCX9vKejZL9DWXMepKUSjJQwXtBkcaRAhNwo2vGOtSeIXsbmjx1r2eZ",
+>>>>>>> 3c96fb37efd043f8f6a2eb961f14fa21fccdcbbf
     category: "Mundo Aberto / Ação"
   },
   {
