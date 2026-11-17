@@ -29,42 +29,42 @@ const LISTA_JOGOS: Game[] = [
     id: 1,
     title: "Red Dead Redemption 2",
     price: 299.90,
-    image: "https://images.alphacoders.com/917/thumb-1920-917393.jpg",
+    image: "https://th.bing.com/th/id/R.32faa1e71871f9d5905830ec57b75533?rik=cp%2bBLLPZdFsN3A&pid=ImgRaw&r=0",
     category: "Mundo Aberto / Ação"
   },
   {
     id: 2,
     title: "Cyberpunk 2077",
     price: 199.90,
-    image: "https://images.alphacoders.com/100/thumb-1920-1004128.jpg",
+    image: "https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7",
     category: "RPG / Sci-Fi"
   },
   {
     id: 3,
     title: "Elden Ring",
     price: 229.90,
-    image: "https://images.alphacoders.com/120/thumb-1920-1200251.jpg",
+    image: "https://motionbgs.com/media/1783/elden-ring.jpg",
     category: "Soulslike / Ação"
   },
   {
     id: 4,
     title: "Counter-Strike 2",
     price: 0.00,
-    image: "https://images.alphacoders.com/130/thumb-1920-1306303.png",
+    image: "https://tse2.mm.bing.net/th/id/OIP.IQjAWQx21pq_oykp113msQHaCz?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     category: "FPS / Multijogador"
   },
   {
     id: 5,
     title: "God of War Ragnarök",
     price: 249.90,
-    image: "https://images.alphacoders.com/128/thumb-1920-1282218.jpg",
+    image: "https://tse2.mm.bing.net/th/id/OIP.3CGRD6lItZVZkPYEDUgOCAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     category: "Ação / Aventura"
   },
   {
     id: 6,
     title: "GTA V: Premium Edition",
     price: 89.90,
-    image: "https://images.alphacoders.com/439/thumb-1920-439563.jpg",
+    image: "https://tse2.mm.bing.net/th/id/OIP.2k9Ikr2SXDcNyXqDbsdrtwHaEo?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     category: "Ação / Mundo Aberto"
   }
 ];
