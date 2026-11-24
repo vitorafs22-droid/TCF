@@ -116,6 +116,30 @@ export default function Loja({sessao, onLogout} ) {
     }
   };
 
+
+    const CHAVE_IA = "AQ.Ab8RN6L1hiFov025UH4ncGT2sZ081d8UkiC_YVtRuUw86jlWYg";
+    const MODELO = "gemini-2.5-flash";
+    const URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODELO}:generateContent`;
+    const contexto = 'Você é o Assistente Oficial da plataforma, operando no estilo da loja e suporte da Steam (Valve).Seu objetivo é recomendar itens do catálogo, tirar dúvidas técnicas e ajudar o usuário a gerenciar sua biblioteca.Direto, prestativo, organizado e levemente gamer/geek.Use expressões como: "na sua biblioteca", "análises muito positivas", "requisitos mínimos", "lista de desejos".Nunca invente preços ou especificações que não existam.Sempre que sugerir um jogo ou produto, responda EXATAMENTE neste formato:🎮 **[Nome do Título]** **Tags:** [Gênero 1, Gênero 2]**Avaliações:** [Ex: Extremamente Positivas]**Resumo:** [1 frase curta explicando por que combina com o usuário]**Preço/Status:** [Valor ou Disponibilidade].1 - Limite as recomendações a no máximo 3 opções por resposta.2 - Em caso de erro técnico ou pedido de reembolso, assuma o modo "Suporte Steam": peça o ID da transação e liste até 3 passos curtos de solução.3 - Termine toda resposta perguntando se o usuário quer adicionar o item à Lista de Desejos ou ver opções semelhantes.'
+
+    async function perguntar( texto ) {
+
+        const resposta = await fetch(URL, {
+            method: "POST",
+            headers: {
+                    "Content-Type": "application/json",
+                    "x-goog-api-key": CHAVE_IA
+            },
+            body: JSON.stringify({contents: [{parts: [{ text: texto }]}]})})
+        
+        const textoResposta = (await resposta.json()).candidates[0].content.parts[0].text;
+
+       
+        return textoResposta
+    }
+    
+
+    
   // Lógica inteligente do Chat / IA de Suporte
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -130,42 +154,11 @@ export default function Loja({sessao, onLogout} ) {
     setTimeout(() => {
       let botResponse = '';
       const lower = userText.toLowerCase();
-
-      // 1. Se perguntar sobre carrinho, valor total ou gastos
-      if (lower.includes('carrinho') || lower.includes('total') || lower.includes('quanto') || lower.includes('comprar')) {
-        if (cart.length === 0) {
-          botResponse = '🛒 Seu carrinho está vazio no momento. Vá até a aba STORE e escolha alguns jogos para eu somar o valor total!';
-        } else {
-          const titles = cart.map(item => item.title).join(', ');
-          botResponse = `🛒 Analisando seu carrinho: Você tem ${cart.length} item(ns) (${titles}). O valor total da compra é **R$ ${totalPrice.toFixed(2)}**.`;
-        }
-      } 
-      // 2. Se for uma expressão matemática (contas)
-      else if (/[0-9+\-*/().]/.test(userText) && /[\+\-\*\/]/.test(userText)) {
-        try {
-          const sanitized = userText.replace(/[^0-9+\-*/().]/g, '');
-          if (sanitized) {
-            const result = Function(`"use strict"; return (${sanitized})`)();
-            botResponse = `🧮 **Cálculo realizado:** ${sanitized} = **${result}**. Precisa de mais alguma conta para o seu orçamento?`;
-          }
-        } catch {
-          botResponse = 'Hmm, não consegui calcular essa expressão. Tente enviar uma conta direta como "150 + 50" ou "200 * 2".';
-        }
-      } 
-      // 3. Perguntas gerais sobre jogos, suporte e a plataforma
-      else if (lower.includes('reembolso') || lower.includes('devolver')) {
-        botResponse = '🎮 **Política de Reembolso:** Jogos jogados por menos de 2 horas e comprados há menos de 14 dias podem ser reembolsados integralmente.';
-      } else if (lower.includes('olá') || lower.includes('oi') || lower.includes('boa') || lower.includes('tudo bem')) {
-        botResponse = `Olá${user ? `, ${user.name}` : ''}! Como posso ajudar você na Steam hoje? Posso tirar dúvidas, calcular o total dos seus jogos ou resolver contas matemáticas!`;
-      } else if (lower.includes('ajuda') || lower.includes('suporte')) {
-        botResponse = '🛠️ Estou aqui para dar suporte! Você pode me perguntar sobre status da conta, jogos da loja, pedir para calcular o total do carrinho ou mandar qualquer expressão matemática.';
-      } else {
-        // Resposta genérica e fluida para qualquer outra pergunta do usuário
-        botResponse = `✨ Entendi sua pergunta sobre "${userText}". Como um assistente de IA da Steam, estou focado em garantir sua satisfação, gerenciar seu carrinho (atualmente em R$ ${totalPrice.toFixed(2)}) e resolver cálculos para você. Tem mais alguma dúvida sobre os jogos?`;
-      }
-
+      botResponse = perguntar(contexto + lower)
+    
+      
       setMessages(prev => [...prev, { sender: 'bot', text: botResponse, time }]);
-    }, 500);
+     }, 500);
   };
 
   function handleLogout() {
